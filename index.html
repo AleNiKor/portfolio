@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korobetskikh Portfolio</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-row">
+                <a href="./index.html" class="logo"><strong>Korobetskikh</strong> portfolio</a>
+                <button class="dark-mode-btn">
+                    <img src="./img/icons/sun.svg" alt="Light mode" class="dark-mode-btn__icon">
+                    <img src="./img/icons/moon.svg" alt="Dark mode" class="dark-mode-btn__icon">
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-list__item"><a href="./blog.html" class="nav-list__link">Блог</a></li>
+                    <li class="nav-list__item"><a href="./skills.html" class="nav-list__link">Опыт</a></li>
+                    <li class="nav-list__item"><a href="./contacts.html" class="nav-list__link">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header__wrapper">
+            <h1 class="header__title">
+                <strong>Привет! Меня зовут <em>Алексей</em></strong><br>
+                Я учусь создать Web-сайты
+            </h1>
+            <div class="header__text">
+                <p>на HTML + CSS, JS.</p>
+            </div>
+            <a href="./img/projects/resume.pdf" class="btn">Download Resume</a>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <h2 class="title-1">Новости</h2>
+            <ul class="projects">
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/29402/">
+                        <img src="./img/projects/pdn1.jpeg" alt="pdn1" class="project__img">
+                        <h3 class="project__title">Контроль за обработкой персональных данных: у ряда юрлиц и ИП
+                            изменится категория риска с 5 сентября</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/29343/">
+                        <img src="./img/projects/pdn2.jpeg" alt="pdn2" class="project__img">
+                        <h3 class="project__title">У операторов персональных данных станет больше обязанностей –
+                            поправки Минцифры</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/29204/">
+                        <img src="./img/projects/pdn3.jpeg" alt="pdn3" class="project__img">
+                        <h3 class="project__title">Добровольное обезличивание персональных данных: бизнесу нужно будет
+                            соблюдать правила Роскомнадзора</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/28832/">
+                        <img src="./img/projects/pdn4.jpeg" alt="pdn4" class="project__img">
+                        <h3 class="project__title">Национальный мессенджер и обработка персональных данных: опубликован
+                            закон о значимых новшествах</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/27142/">
+                        <img src="./img/projects/pdn5.jpeg" alt="pdn5" class="project__img">
+                        <h3 class="project__title">Новые штрафы за утечку персональных данных и другие нарушения при
+                            работе с ними: закон опубликован</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://www.consultant.ru/legalnews/27082/">
+                        <img src="./img/projects/pdn6.jpeg" alt="pdn6" class="project__img">
+                        <h3 class="project__title">Утечка персональных данных и другие нарушения операторов: поправки к
+                            КоАП РФ прошли третье чтение</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <button class="scroll-to-top" aria-label="Наверх">↑</button>
+
+    <script>
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за элементами, которые должны появляться при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            // Анимируем заголовок
+            const title = document.querySelector('.title-1');
+            setTimeout(() => {
+                title.classList.add('visible');
+            }, 300);
+
+            // Наблюдаем за карточками статей
+            const trendPosts = document.querySelectorAll('.trends_post');
+            trendPosts.forEach((post, index) => {
+                observer.observe(post);
+                // Добавляем задержку для последовательного появления
+                post.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Кнопка "Наверх"
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Добавляем интерактивность карточкам
+            trendPosts.forEach(post => {
+                post.addEventListener('click', (e) => {
+                    // Если клик не по ссылке, переходим по ссылке заголовка
+                    if (e.target.tagName !== 'A') {
+                        const link = post.querySelector('.trands_post_main-wrap_title');
+                        if (link) {
+                            window.location.href = link.href;
+                        }
+                    }
+                });
+
+                // Добавляем эффект при наведении на всю карточку
+                post.style.cursor = 'pointer';
+            });
+        });
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <ul class="social">
+                    <li class="social__item"><a href="https://github.com/AleNiKor"><img src="./img/icons/gitHub.svg"
+                                alt="Link"></a></li>
+                    <li class="social__item"><a href="https://vk.com/korobetskikh"><img src="./img/icons/vk.svg"
+                                alt="Link"></a></li>
+                </ul>
+                <div class="copyright">
+                    <p>© 2025 akorobetskikh.ru </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>

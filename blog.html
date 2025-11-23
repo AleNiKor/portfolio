@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korobetskikh Portfolio</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-row">
+                <a href="./index.html" class="logo"><strong>Korobetskikh</strong> portfolio</a>
+                <button class="dark-mode-btn">
+                    <img src="./img/icons/sun.svg" alt="Light mode" class="dark-mode-btn__icon">
+                    <img src="./img/icons/moon.svg" alt="Dark mode" class="dark-mode-btn__icon">
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-list__item"><a href="./blog.html"
+                            class="nav-list__link nav-list__link--active">Блог</a></li>
+                    <li class="nav-list__item"><a href="./skills.html" class="nav-list__link">Опыт</a></li>
+                    <li class="nav-list__item"><a href="./contacts.html" class="nav-list__link">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="container">
+            <div class="blog-details">
+                <h1 class="title-1">Блог о защите информации</h1>
+                <img src="./img/blog/banner-bg.jpeg" alt="Логотип" class="blog-details__cover">
+            </div>
+        </div>
+    </main>
+
+    <main class="section">
+        <div class="container">
+            <h2 class="title-1">Статьи</h2>
+            <ul class="projects">
+                <li class="project">
+                    <a href="https://habr.com/ru/companies/garda/articles/967976/">
+                        <img src="./img/blog/ib1.png" alt="ib1" class="project__img">
+                        <h3 class="project__title">Аналитика DDoS-атак за III квартал 2025 года</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://habr.com/ru/companies/pvs-studio/articles/967928/">
+                        <img src="./img/blog/ib2.png" alt="ib2" class="project__img">
+                        <h3 class="project__title">Аутсорсинг и приказ ФСТЭК №117: теория РБПО, инструменты</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://habr.com/ru/articles/967420/">
+                        <img src="./img/blog/ib3.png" alt="ib3" class="project__img">
+                        <h3 class="project__title">Как SMM Газпрома устроили добровольный "слив" данных клиентов</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://habr.com/ru/companies/wildberries/articles/959074/">
+                        <img src="./img/blog/ib4.png" alt="ib4" class="project__img">
+                        <h3 class="project__title">Как настроить Nginx, чтобы выдержать DDoS</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://habr.com/ru/articles/966872/">
+                        <img src="./img/blog/ib5.png" alt="ib5" class="project__img">
+                        <h3 class="project__title">VPN как троянский конь: индустрия продаёт не только приватность, но и
+                            ваше доверие</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="https://habr.com/ru/companies/bothub/articles/966910/">
+                        <img src="./img/blog/ib6.png" alt="ib6" class="project__img">
+                        <h3 class="project__title">Ваш антивирус мёртв. Его убил искусственный интеллект</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <button class="scroll-to-top" aria-label="Наверх">↑</button>
+
+    <script>
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за элементами, которые должны появляться при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            // Анимируем заголовок
+            const title = document.querySelector('.title-1');
+            setTimeout(() => {
+                title.classList.add('visible');
+            }, 300);
+
+            // Наблюдаем за карточками статей
+            const trendPosts = document.querySelectorAll('.trends_post');
+            trendPosts.forEach((post, index) => {
+                observer.observe(post);
+                // Добавляем задержку для последовательного появления
+                post.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Кнопка "Наверх"
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Добавляем интерактивность карточкам
+            trendPosts.forEach(post => {
+                post.addEventListener('click', (e) => {
+                    // Если клик не по ссылке, переходим по ссылке заголовка
+                    if (e.target.tagName !== 'A') {
+                        const link = post.querySelector('.trands_post_main-wrap_title');
+                        if (link) {
+                            window.location.href = link.href;
+                        }
+                    }
+                });
+
+                // Добавляем эффект при наведении на всю карточку
+                post.style.cursor = 'pointer';
+            });
+        });
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <ul class="social">
+                    <li class="social__item"><a href="https://github.com/AleNiKor"><img src="./img/icons/gitHub.svg"
+                                alt="Link"></a></li>
+                    <li class="social__item"><a href="https://vk.com/korobetskikh"><img src="./img/icons/vk.svg"
+                                alt="Link"></a></li>
+                </ul>
+                <div class="copyright">
+                    <p>© 2025 akorobetskikh.ru </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
