@@ -44,45 +44,81 @@
             <h2 class="title-1">Новости</h2>
             <ul class="projects">
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/29402/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/29402/" target="_blank">
                         <img src="./img/projects/pdn1.jpeg" alt="pdn1" class="project__img">
                         <h3 class="project__title">Контроль за обработкой персональных данных: у ряда юрлиц и ИП
                             изменится категория риска с 5 сентября</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">📰</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/29343/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/29343/" target="_blank">
                         <img src="./img/projects/pdn2.jpeg" alt="pdn2" class="project__img">
                         <h3 class="project__title">У операторов персональных данных станет больше обязанностей –
                             поправки Минцифры</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">📝</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/29204/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/29204/" target="_blank">
                         <img src="./img/projects/pdn3.jpeg" alt="pdn3" class="project__img">
                         <h3 class="project__title">Добровольное обезличивание персональных данных: бизнесу нужно будет
                             соблюдать правила Роскомнадзора</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">🛡️</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/28832/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/28832/" target="_blank">
                         <img src="./img/projects/pdn4.jpeg" alt="pdn4" class="project__img">
                         <h3 class="project__title">Национальный мессенджер и обработка персональных данных: опубликован
                             закон о значимых новшествах</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">💬</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/27142/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/27142/" target="_blank">
                         <img src="./img/projects/pdn5.jpeg" alt="pdn5" class="project__img">
                         <h3 class="project__title">Новые штрафы за утечку персональных данных и другие нарушения при
                             работе с ними: закон опубликован</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">⚖️</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
                 <li class="project">
-                    <a href="https://www.consultant.ru/legalnews/27082/">
+                    <div class="project__category">Персональные данные</div>
+                    <a href="https://www.consultant.ru/legalnews/27082/" target="_blank">
                         <img src="./img/projects/pdn6.jpeg" alt="pdn6" class="project__img">
                         <h3 class="project__title">Утечка персональных данных и другие нарушения операторов: поправки к
                             КоАП РФ прошли третье чтение</h3>
+                            <div class="project__hover-content">
+                            <div class="project__hover-icon">🔒</div>
+                            <div class="project__hover-text">Читать статью</div>
+                            <div class="project__hover-subtext">КонсультантПлюс</div>
+                        </div>
                     </a>
                 </li>
             </ul>
@@ -92,7 +128,8 @@
     <button class="scroll-to-top" aria-label="Наверх">↑</button>
 
     <script>
-        // Анимация появления элементов при скролле
+
+         // Анимация появления карточек при скролле
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -106,25 +143,17 @@
             });
         }, observerOptions);
 
-        // Наблюдаем за элементами, которые должны появляться при скролле
+        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', () => {
-            // Анимируем заголовок
-            const title = document.querySelector('.title-1');
-            setTimeout(() => {
-                title.classList.add('visible');
-            }, 300);
-
-            // Наблюдаем за карточками статей
-            const trendPosts = document.querySelectorAll('.project__title');
-            trendPosts.forEach((post, index) => {
-                observer.observe(post);
-                // Добавляем задержку для последовательного появления
-                post.style.transitionDelay = `${index * 0.1}s`;
+            // Наблюдаем за карточками
+            const projects = document.querySelectorAll('.project');
+            projects.forEach(project => {
+                observer.observe(project);
             });
-
+       
             // Кнопка "Наверх"
             const scrollToTopBtn = document.querySelector('.scroll-to-top');
-
+            
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 300) {
                     scrollToTopBtn.classList.add('visible');
@@ -140,23 +169,48 @@
                 });
             });
 
-            // Добавляем интерактивность карточкам
-            trendPosts.forEach(post => {
-                post.addEventListener('click', (e) => {
-                    // Если клик не по ссылке, переходим по ссылке заголовка
-                    if (e.target.tagName !== 'A') {
-                        const link = post.querySelector('.project__title');
+           // Добавляем эффект клика на карточки
+            projects.forEach(project => {
+                project.addEventListener('click', function(e) {
+                    // Добавляем эффект "нажатия"
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+
+                // Добавляем клавиатурную навигацию
+                project.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        const link = this.querySelector('a');
                         if (link) {
-                            window.location.href = link.href;
+                            window.open(link.href, '_blank');
                         }
                     }
                 });
+            });
 
-                // Добавляем эффект при наведении на всю карточку
-                post.style.cursor = 'pointer';
+            // Добавляем tabindex для доступности
+            projects.forEach(project => {
+                project.setAttribute('tabindex', '0');
+                project.setAttribute('role', 'article');
             });
         });
-        
+
+        // Плавный скролл для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }); 
+
     </script>
 
     <footer class="footer">
@@ -181,5 +235,3 @@
 
 
 </html>
-
-
