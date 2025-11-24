@@ -115,7 +115,7 @@
             }, 300);
 
             // Наблюдаем за карточками статей
-            const trendPosts = document.querySelectorAll('.project');
+            const trendPosts = document.querySelectorAll('.project__title');
             trendPosts.forEach((post, index) => {
                 observer.observe(post);
                 // Добавляем задержку для последовательного появления
@@ -145,7 +145,7 @@
                 post.addEventListener('click', (e) => {
                     // Если клик не по ссылке, переходим по ссылке заголовка
                     if (e.target.tagName !== 'A') {
-                        const link = post.querySelector('.project');
+                        const link = post.querySelector('.project__title');
                         if (link) {
                             window.location.href = link.href;
                         }
@@ -181,4 +181,5 @@
 
 
 </html>
+
 
